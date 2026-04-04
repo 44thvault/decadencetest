@@ -2,7 +2,6 @@ import { useState, useEffect, useRef, useCallback } from "react";
 import INTERPRETATIONS from "./interpretations.js";
 import PATHS from "./paths.js";
 import ZONES from "./zones.js";
-import ZONES from "./zones.js";
 
 // ═══ QUASIPHONIC PARTICLES ═══
 const PHONEMES = {0:"eiaoung",1:"gl",2:"dt",3:"zx",4:"skr",5:"tk",6:"dj",7:"pb",8:"mn",9:"utt"};
