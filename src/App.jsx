@@ -191,7 +191,7 @@ export default function DecadenceGame(){
   const isSub=mode==="subdecadence";
   const accent=isSub?"#f0f":"#0f3";
   // Theme
-  const T=lightMode?{bg:"#fff",text:"#111",muted:"#555",faint:"#888",border:"#ccc",borderFaint:"#ddd",cardBg:"#f5f5f5",cardText:"#111",overlayBg:"rgba(255,255,255,0.97)",panelBg:"rgba(245,245,245,0.95)",accent:isSub?"#a0a":"#060",accentFaint:(isSub?"#a0a":"#060")+"30",riteTC:"#060",ritePlex:"#606",riteWarp:isSub?"#a0a":"#060",pathText:"#333",interpText:"#222",pylonLabel:"#aaa",scanline:"transparent"}:{bg:"#000",text:"#ccc",muted:"#777",faint:"#444",border:"#1a1a1a",borderFaint:"#111",cardBg:"#111",cardText:"#ccc",overlayBg:"rgba(0,0,0,0.94)",panelBg:"rgba(0,0,0,0.3)",accent:accent,accentFaint:accent+"30",riteTC:"#0f0",ritePlex:"#9966ff",riteWarp:accent,pathText:"#bba",interpText:"#ccc",pylonLabel:"#333",scanline:"rgba(255,255,255,0.015)"};
+  const T=lightMode?{bg:"#fff",text:"#000",muted:"#333",faint:"#666",border:"#ccc",borderFaint:"#ddd",cardBg:"#f5f5f5",cardText:"#000",overlayBg:"rgba(255,255,255,0.97)",panelBg:"rgba(245,245,245,0.95)",accent:"#000",accentFaint:"#00000020",riteTC:"#000",ritePlex:"#000",riteWarp:"#000",pathText:"#000",interpText:"#000",pylonLabel:"#999",scanline:"transparent"}:{bg:"#000",text:"#ccc",muted:"#777",faint:"#444",border:"#1a1a1a",borderFaint:"#111",cardBg:"#111",cardText:"#ccc",overlayBg:"rgba(0,0,0,0.94)",panelBg:"rgba(0,0,0,0.3)",accent:accent,accentFaint:accent+"30",riteTC:"#0f0",ritePlex:"#9966ff",riteWarp:accent,pathText:"#bba",interpText:"#ccc",pylonLabel:"#333",scanline:"rgba(255,255,255,0.015)"};
 
   useEffect(()=>{const iv=setInterval(()=>{glitchOffset.current={x:(Math.random()*3-1.5),y:(Math.random()*2-1)};setGlitchText(true);setTimeout(()=>setGlitchText(false),100);},5000+Math.random()*8000);return()=>clearInterval(iv);},[]);
 
@@ -309,22 +309,6 @@ export default function DecadenceGame(){
                     <span style={{color:"#555",fontSize:10}}>{d.pitch}</span>
                   </div>
                   <div style={{color:"#444",fontSize:10,marginTop:1}}>{d.title} · {d.type}{d.phaseLimit?" · Phase-Limit":""}{d.decaCard?" · ["+d.decaCard+"]":""} · <span style={{fontStyle:"italic",color:"#383838"}}>{demonPhoneme(d.netSpan)}</span></div>
-                </div>
-              ))}
-            </div>)}
-
-            {/* ZONES BROWSER */}
-            <button onClick={()=>{haptic();setShowZones(!showZones);}} style={{padding:"6px 16px",background:"transparent",border:"1px solid "+accent+"30",color:accent,fontFamily:"monospace",fontSize:10,letterSpacing:3,cursor:"pointer",borderRadius:2,display:"block",margin:"0 auto 12px"}}>◈ BROWSE NUMOGRAM ZONES ◈</button>
-            {showZones&&(<div style={{maxHeight:340,overflowY:"auto",border:"1px solid "+accent+"20",borderRadius:2,padding:"8px",background:"rgba(0,0,0,0.4)",marginBottom:16,textAlign:"left"}}>
-              <div style={{color:accent,fontSize:10,letterSpacing:3,marginBottom:8,textAlign:"center"}}>10 ZONES · DECIMAL LABYRINTH</div>
-              {Object.values(ZONES).map((z,i)=>(
-                <div key={i} style={{padding:"8px",marginBottom:8,borderBottom:"1px solid #1a1a1a"}}>
-                  <div style={{display:"flex",justifyContent:"space-between",alignItems:"center",marginBottom:4}}>
-                    <span style={{color:accent,fontSize:13,fontWeight:"bold"}}>{z.name}</span>
-                    <span style={{color:"#555",fontSize:10}}>{z.region} · {z.planet}</span>
-                  </div>
-                  <div style={{color:"#666",fontSize:10,marginBottom:4}}>{z.spine} · {z.gate} → Zn-{z.gateTarget} · Phoneme: <span style={{fontStyle:"italic"}}>{z.phoneme}</span> · Imps: {z.impulseEntities}</div>
-                  <div style={{color:"#888",fontSize:12,lineHeight:1.7}}>{z.description}</div>
                 </div>
               ))}
             </div>)}
@@ -452,8 +436,8 @@ export default function DecadenceGame(){
 
       {oracleResult&&<DemonOracle result={oracleResult} onClose={()=>setOracleResult(null)} onShare={shareDemonCall} mode={mode} aeonTotal={aeonScore} lightMode={lightMode}/>}
       {showTutorial&&<Tutorial onClose={()=>setShowTutorial(false)} mode={mode}/>}
-      <div style={{position:"fixed",bottom:8,right:8,zIndex:900}}>
-        <button onClick={()=>{haptic();const v=!lightMode;setLightMode(v);saveData("lightMode",v);}} style={{padding:"4px 10px",background:lightMode?"#eee":"#111",border:"1px solid "+(lightMode?"#ccc":"#333"),color:lightMode?"#333":"#777",fontFamily:"monospace",fontSize:9,letterSpacing:1,cursor:"pointer",borderRadius:2,opacity:0.7}}>{lightMode?"◑ DARK":"◐ LIGHT"}</button>
+      <div style={{position:"fixed",bottom:12,left:"50%",transform:"translateX(-50%)",zIndex:900}}>
+        <button onClick={()=>{haptic();const v=!lightMode;setLightMode(v);saveData("lightMode",v);}} style={{padding:"5px 14px",background:lightMode?"#f0f0f0":"#111",border:"1px solid "+(lightMode?"#ccc":"#333"),color:lightMode?"#000":"#777",fontFamily:"monospace",fontSize:10,letterSpacing:2,cursor:"pointer",borderRadius:2}}>{lightMode?"◑ DARK":"◐ LIGHT"}</button>
       </div>
     </div>
   );
