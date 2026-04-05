@@ -189,7 +189,7 @@ export default function DecadenceGame(){
   const[demonLog,setDemonLog]=useState(()=>loadData("demonLog",[]));
 
   const isSub=mode==="subdecadence";
-  const accent=isSub?"#f0f":"#0f3";
+  const accent=lightMode?"#000":(isSub?"#f0f":"#0f3");
   // Theme
   const T=lightMode?{bg:"#fff",text:"#000",muted:"#333",faint:"#666",border:"#ccc",borderFaint:"#ddd",cardBg:"#f5f5f5",cardText:"#000",overlayBg:"rgba(255,255,255,0.97)",panelBg:"rgba(245,245,245,0.95)",accent:"#000",accentFaint:"#00000020",riteTC:"#000",ritePlex:"#000",riteWarp:"#000",pathText:"#000",interpText:"#000",pylonLabel:"#999",scanline:"transparent"}:{bg:"#000",text:"#ccc",muted:"#777",faint:"#444",border:"#1a1a1a",borderFaint:"#111",cardBg:"#111",cardText:"#ccc",overlayBg:"rgba(0,0,0,0.94)",panelBg:"rgba(0,0,0,0.3)",accent:accent,accentFaint:accent+"30",riteTC:"#0f0",ritePlex:"#9966ff",riteWarp:accent,pathText:"#bba",interpText:"#ccc",pylonLabel:"#333",scanline:"rgba(255,255,255,0.015)"};
 
@@ -370,6 +370,9 @@ export default function DecadenceGame(){
             {/* CONTACT */}
             <a href="https://x.com/playdecadence" target="_blank" rel="noopener noreferrer" onClick={()=>haptic()} style={{padding:"5px 14px",background:"transparent",border:"1px solid "+accent+"30",color:accent,fontFamily:"monospace",fontSize:10,letterSpacing:2,cursor:"pointer",borderRadius:2,display:"block",margin:"0 auto 12px",textAlign:"center",textDecoration:"none",boxSizing:"border-box"}}>CONTACT</a>
 
+            {/* LIGHT/DARK MODE */}
+            <button onClick={()=>{haptic();const v=!lightMode;setLightMode(v);saveData("lightMode",v);}} style={{padding:"5px 14px",background:"transparent",border:"1px solid "+accent+"30",color:accent,fontFamily:"monospace",fontSize:10,letterSpacing:2,cursor:"pointer",borderRadius:2,display:"block",margin:"0 auto 12px"}}>{lightMode?"◑ DARK MODE":"◐ LIGHT MODE"}</button>
+
           </div>
         )}
 
@@ -436,9 +439,6 @@ export default function DecadenceGame(){
 
       {oracleResult&&<DemonOracle result={oracleResult} onClose={()=>setOracleResult(null)} onShare={shareDemonCall} mode={mode} aeonTotal={aeonScore} lightMode={lightMode}/>}
       {showTutorial&&<Tutorial onClose={()=>setShowTutorial(false)} mode={mode}/>}
-      <div style={{position:"fixed",bottom:12,left:"50%",transform:"translateX(-50%)",zIndex:900}}>
-        <button onClick={()=>{haptic();const v=!lightMode;setLightMode(v);saveData("lightMode",v);}} style={{padding:"5px 14px",background:lightMode?"#f0f0f0":"#111",border:"1px solid "+(lightMode?"#ccc":"#333"),color:lightMode?"#000":"#777",fontFamily:"monospace",fontSize:10,letterSpacing:2,cursor:"pointer",borderRadius:2}}>{lightMode?"◑ DARK":"◐ LIGHT"}</button>
-      </div>
     </div>
   );
 }
