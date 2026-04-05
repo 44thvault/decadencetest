@@ -78,26 +78,24 @@ const Card=({card,faceUp,onClick,selected,matched,w=60,h=106,flash})=>{const dv=
 </div></div>);};
 
 // ═══ DEMON ORACLE OVERLAY ═══
-const DemonOracle=({result,onClose,onShare,mode,aeonTotal,lightMode})=>{const[vis,setVis]=useState(false);useEffect(()=>{hapticHeavy();setTimeout(()=>setVis(true),100);},[]);if(!result)return null;const ang=result.type==="angelic";const d=result.demon;const isSub=mode==="subdecadence";const ac=ang?"#ffd700":"#ff0044";const lm=lightMode;const Sec=({label,children})=>(<div style={{borderTop:"1px solid "+(lm?ac+"30":ac+"18"),paddingTop:12,marginBottom:12}}><div style={{color:ac,fontSize:12,letterSpacing:3,marginBottom:6}}>{label}</div><div style={{color:lm?"#222":"#ddd",fontSize:17,lineHeight:1.85}}>{children}</div></div>);
-  // Gate relationship summary
+const DemonOracle=({result,onClose,onShare,mode,aeonTotal,lightMode})=>{const[vis,setVis]=useState(false);useEffect(()=>{hapticHeavy();setTimeout(()=>setVis(true),100);},[]);if(!result)return null;const ang=result.type==="angelic";const d=result.demon;const isSub=mode==="subdecadence";const ac=lightMode?"#000":(ang?"#ffd700":"#ff0044");const lm=lightMode;const tx=lm?"#000":"#ddd";const mt=lm?"#333":"#777";const ft=lm?"#555":"#444";const Sec=({label,children})=>(<div style={{borderTop:"1px solid "+(lm?"#ddd":ac+"18"),paddingTop:12,marginBottom:12}}><div style={{color:lm?"#000":ac,fontSize:14,letterSpacing:3,marginBottom:6}}>{label}</div><div style={{color:tx,fontSize:18,lineHeight:1.85}}>{children}</div></div>);
   const gateRels=(dem)=>{const parts=[];if(dem.clicks&&dem.clicks.length)parts.push("Clicks "+dem.clicks.join(", "));if(dem.ciphers&&dem.ciphers.length)parts.push("Ciphers "+dem.ciphers.join(", "));if(dem.haunts&&dem.haunts.length)parts.push("Haunts "+dem.haunts.join(", "));return parts.join(" · ")||null;};
-  // Current relationship summary
   const currRels=(dem)=>{const parts=[];if(dem.feeds)parts.push("Feeds "+dem.feeds);if(dem.prowls)parts.push("Prowls "+dem.prowls);if(dem.shadows)parts.push("Shadows "+dem.shadows);return parts.join(" · ")||null;};
-  return(<div style={{position:"fixed",inset:0,zIndex:1000,background:lm?"rgba(255,255,255,0.96)":"rgba(0,0,0,0.94)",display:"flex",alignItems:"center",justifyContent:"center",opacity:vis?1:0,transition:"opacity 0.8s",backdropFilter:"blur(10px)",padding:12}}><div onClick={e=>e.stopPropagation()} style={{maxWidth:420,width:"100%",maxHeight:"90vh",overflowY:"auto",background:lm?"#fff":"linear-gradient(180deg,#0a0a0a,#050510)",border:"1px solid "+ac+"30",borderRadius:4,padding:"24px 20px",fontFamily:"'Courier New',monospace",boxShadow:lm?"0 4px 20px rgba(0,0,0,0.12)":"0 0 50px "+ac+"15",position:"relative",WebkitOverflowScrolling:"touch",color:lm?"#222":"#ccc"}}>{!lm&&<div style={{position:"absolute",inset:0,pointerEvents:"none",background:"repeating-linear-gradient(0deg,transparent,transparent 2px,rgba(255,255,255,0.015) 2px,rgba(255,255,255,0.015) 4px)"}}/>}
+  return(<div style={{position:"fixed",inset:0,zIndex:1000,background:lm?"rgba(255,255,255,0.96)":"rgba(0,0,0,0.94)",display:"flex",alignItems:"center",justifyContent:"center",opacity:vis?1:0,transition:"opacity 0.8s",backdropFilter:"blur(10px)",padding:12}}><div onClick={e=>e.stopPropagation()} style={{maxWidth:420,width:"100%",maxHeight:"90vh",overflowY:"auto",background:lm?"#fff":"linear-gradient(180deg,#0a0a0a,#050510)",border:"1px solid "+(lm?"#ccc":ac+"30"),borderRadius:4,padding:"24px 20px",fontFamily:"'Courier New',monospace",boxShadow:lm?"0 4px 20px rgba(0,0,0,0.12)":"0 0 50px "+ac+"15",position:"relative",WebkitOverflowScrolling:"touch",color:lm?"#000":"#ccc"}}>{!lm&&<div style={{position:"absolute",inset:0,pointerEvents:"none",background:"repeating-linear-gradient(0deg,transparent,transparent 2px,rgba(255,255,255,0.015) 2px,rgba(255,255,255,0.015) 4px)"}}/>}
     {ang?(<>
-      <div style={{color:"#ffd700",fontSize:13,letterSpacing:5,marginBottom:8}}>{isSub?"◈ ZYGONOVIST INDEX ◈":"◈ ANGELIC INDEX ◈"}</div>
-      <div style={{color:"#ffd700",fontSize:42,fontWeight:"bold",marginBottom:6}}>+{result.score}</div>
-      {typeof aeonTotal==="number"&&<div style={{color:"#ffd700aa",fontSize:15,marginBottom:8}}>Aeon Cumulation: {aeonTotal}</div>}
-      <div style={{color:"#999",fontSize:14,lineHeight:1.8,marginBottom:10}}>{isSub?"Positive results extend the Aeon under Neolemurian zygonovist reckoning. The nine-sum principle holds.":"Positive results contribute to the Angelic Index of the Decadence game, and are referred to the Decamantic tables of AOE-Angelology."}</div>
-      <div style={{color:"#666",fontSize:13,lineHeight:1.7,fontStyle:"italic"}}>{isSub?"Maximum single-game gain under Subdecadence rules is thirty-two.":"The Decamantic tables have never been published. Maximum single-game gain is thirty-eight, but this can be exceeded by cumulations from game to game until completion of an Aeon."}</div>
+      <div style={{color:lm?"#000":"#ffd700",fontSize:15,letterSpacing:5,marginBottom:8}}>{isSub?"◈ ZYGONOVIST INDEX ◈":"◈ ANGELIC INDEX ◈"}</div>
+      <div style={{color:lm?"#000":"#ffd700",fontSize:42,fontWeight:"bold",marginBottom:6}}>+{result.score}</div>
+      {typeof aeonTotal==="number"&&<div style={{color:lm?"#333":"#ffd700aa",fontSize:16,marginBottom:8}}>Aeon Cumulation: {aeonTotal}</div>}
+      <div style={{color:lm?"#333":"#999",fontSize:16,lineHeight:1.8,marginBottom:10}}>{isSub?"Positive results extend the Aeon under Neolemurian zygonovist reckoning. The nine-sum principle holds.":"Positive results contribute to the Angelic Index of the Decadence game, and are referred to the Decamantic tables of AOE-Angelology."}</div>
+      <div style={{color:lm?"#555":"#666",fontSize:15,lineHeight:1.7,fontStyle:"italic"}}>{isSub?"Maximum single-game gain under Subdecadence rules is thirty-two.":"The Decamantic tables have never been published. Maximum single-game gain is thirty-eight, but this can be exceeded by cumulations from game to game until completion of an Aeon."}</div>
     </>):(<>
-      <div style={{color:ac,fontSize:13,letterSpacing:5,marginBottom:8}}>{isSub?"◈ LEMUR CALL ◈":"◈ DEMON CALL ◈"}</div>
-      <div style={{color:ac,fontSize:30,fontWeight:"bold",marginBottom:2,textShadow:"0 0 15px "+ac+"50"}}>{d.name}</div>
-      {d.aliases&&<div style={{color:"#777",fontSize:13,marginBottom:4,fontStyle:"italic"}}>{d.aliases}</div>}
-      <div style={{color:"#aaa",fontSize:15,marginBottom:4}}>{d.title}</div>
-      <div style={{color:"#777",fontSize:13,marginBottom:16}}>Mesh-{d.mesh} · {d.type} · [{d.netSpan}] · <span style={{color:"#555",fontStyle:"italic"}}>{demonPhoneme(d.netSpan)}</span></div>
+      <div style={{color:lm?"#000":ac,fontSize:15,letterSpacing:5,marginBottom:8}}>{isSub?"◈ LEMUR CALL ◈":"◈ DEMON CALL ◈"}</div>
+      <div style={{color:lm?"#000":ac,fontSize:32,fontWeight:"bold",marginBottom:2,textShadow:lm?"none":"0 0 15px "+ac+"50"}}>{d.name}</div>
+      {d.aliases&&<div style={{color:mt,fontSize:15,marginBottom:4,fontStyle:"italic"}}>{d.aliases}</div>}
+      <div style={{color:lm?"#333":"#aaa",fontSize:17,marginBottom:4}}>{d.title}</div>
+      <div style={{color:mt,fontSize:15,marginBottom:16}}>Mesh-{d.mesh} · {d.type} · [{d.netSpan}] · <span style={{fontStyle:"italic"}}>{demonPhoneme(d.netSpan)}</span></div>
       <Sec label="PITCH">{d.pitch}</Sec>
-      <Sec label={isSub?"NET-SPAN PASSAGE":"ZONE PASSAGE"}>{(()=>{const[a,b]=d.netSpan.split("::").map(Number);const za=ZONES[a];const zb=ZONES[b];return(<div><div style={{marginBottom:6}}>{d.zone}</div><div style={{fontSize:13,color:"#777",lineHeight:1.7}}><span style={{color:ac}}>{za.name}</span> ({za.region} · {za.planet}) → <span style={{color:ac}}>{zb.name}</span> ({zb.region} · {zb.planet})</div></div>);})()}</Sec>
+      <Sec label={isSub?"NET-SPAN PASSAGE":"ZONE PASSAGE"}>{d.zone}</Sec>
       {d.syzygy&&<Sec label="SYZYGY">{d.syzygy}</Sec>}
       <Sec label="DOMAIN">{d.domain}</Sec>
       {d.door&&<Sec label="DOOR">{d.door}{d.planet?" · "+d.planet:""}{d.spine?" · "+d.spine:""}</Sec>}
@@ -106,15 +104,15 @@ const DemonOracle=({result,onClose,onShare,mode,aeonTotal,lightMode})=>{const[vi
       {gateRels(d)&&<Sec label="GATE RELATIONS">{gateRels(d)}</Sec>}
       {currRels(d)&&<Sec label="CURRENTS">{currRels(d)}</Sec>}
       {d.decaCard&&<Sec label={isSub?"SUBDECADOLOGY":"DECADOLOGY"}>C/tp-#{d.clusterType} · [{d.decaCard}]</Sec>}
-      {d.rites&&d.rites.length>0&&<Sec label="RITES">{d.rites.map((r,i)=>{const zoneColor=(z)=>{const n=parseInt(z);if(n===0||n===9)return"#9966ff";if(n===3||n===6)return ac;return"#0f0";};return(<div key={i} style={{marginBottom:8}}><div><span style={{color:ac}}>Rt-{r.rt}:[{r.seq==="X"||r.seq==="?"?r.seq:r.seq.split("").map((z,j)=><span key={j} style={{color:zoneColor(z)}}>{z}</span>)}]</span>{r.pathName&&<span style={{color:"#888",marginLeft:8}}>→ Pth-{r.path}: {r.pathName}</span>}</div><div style={{color:"#777",fontSize:14,marginTop:2}}>{r.desc}</div></div>);})}</Sec>}
-      {d.rites&&d.rites.some(r=>r.path&&PATHS[r.path])&&<Sec label="◈ BOOK OF PATHS ◈">{d.rites.filter(r=>r.path&&PATHS[r.path]).map((r,i)=><div key={i} style={{padding:"10px 12px",marginBottom:10,background:"rgba(255,255,255,0.02)",border:"1px solid "+ac+"15",borderRadius:2}}><div style={{color:ac,fontSize:12,letterSpacing:2,marginBottom:8}}>Pth-{r.path}: {PATHS[r.path].name}</div>{PATHS[r.path].lines.map((line,j)=><div key={j} style={{color:"#bba",fontSize:14,lineHeight:1.8,fontStyle:"italic"}}>{line}</div>)}</div>)}</Sec>}
-      {d.rites&&d.rites[0]&&d.rites[0].seq==="?"&&<Sec label="◈ BOOK OF PATHS ◈"><div style={{color:"#665",fontSize:14,lineHeight:1.8,fontStyle:"italic"}}>The routes of the Chaotic Xenodemons are unknowable. They operate outside the path system entirely.</div></Sec>}
-      {INTERPRETATIONS[result.score]&&<Sec label="◈ FULL INTERPRETATION ◈"><div style={{color:"#ccc",fontSize:16,lineHeight:1.95,fontStyle:"italic"}}>{INTERPRETATIONS[Math.min(result.score,44)]}</div></Sec>}
-      <div style={{color:"#666",fontSize:13,marginTop:16,textAlign:"center"}}>Score: -{result.score} · Aeon Terminated</div>
+      {d.rites&&d.rites.length>0&&<Sec label="RITES">{d.rites.map((r,i)=>{const zc=lm?"#000":(z=>{const n=parseInt(z);if(n===0||n===9)return"#9966ff";if(n===3||n===6)return ac;return"#0f0";});return(<div key={i} style={{marginBottom:8}}><div><span style={{color:lm?"#000":ac}}>Rt-{r.rt}:[{r.seq==="X"||r.seq==="?"?r.seq:r.seq.split("").map((z,j)=><span key={j} style={{color:lm?"#000":zc(z)}}>{z}</span>)}]</span>{r.pathName&&<span style={{color:mt,marginLeft:8}}>→ Pth-{r.path}: {r.pathName}</span>}</div><div style={{color:mt,fontSize:16,marginTop:2}}>{r.desc}</div></div>);})}</Sec>}
+      {d.rites&&d.rites.some(r=>r.path&&PATHS[r.path])&&<Sec label="◈ BOOK OF PATHS ◈">{d.rites.filter(r=>r.path&&PATHS[r.path]).map((r,i)=><div key={i} style={{padding:"10px 12px",marginBottom:10,background:lm?"rgba(0,0,0,0.03)":"rgba(255,255,255,0.02)",border:"1px solid "+(lm?"#ddd":ac+"15"),borderRadius:2}}><div style={{color:lm?"#000":ac,fontSize:14,letterSpacing:2,marginBottom:8}}>Pth-{r.path}: {PATHS[r.path].name}</div>{PATHS[r.path].lines.map((line,j)=><div key={j} style={{color:lm?"#333":"#bba",fontSize:16,lineHeight:1.8,fontStyle:"italic"}}>{line}</div>)}</div>)}</Sec>}
+      {d.rites&&d.rites[0]&&d.rites[0].seq==="?"&&<Sec label="◈ BOOK OF PATHS ◈"><div style={{color:lm?"#555":"#665",fontSize:16,lineHeight:1.8,fontStyle:"italic"}}>The routes of the Chaotic Xenodemons are unknowable. They operate outside the path system entirely.</div></Sec>}
+      {INTERPRETATIONS[result.score]&&<Sec label="◈ FULL INTERPRETATION ◈"><div style={{color:lm?"#000":"#ccc",fontSize:18,lineHeight:1.95,fontStyle:"italic"}}>{INTERPRETATIONS[Math.min(result.score,44)]}</div></Sec>}
+      <div style={{color:mt,fontSize:15,marginTop:16,textAlign:"center"}}>Score: -{result.score} · Aeon Terminated</div>
     </>)}
     <div style={{display:"flex",gap:8,marginTop:18}}>
-      <button onClick={()=>{haptic();onClose();}} style={{flex:1,padding:"14px",background:"transparent",border:"1px solid "+ac+"40",color:ac,fontFamily:"monospace",fontSize:14,letterSpacing:3,cursor:"pointer",borderRadius:2}}>DISMISS</button>
-      {!ang&&onShare&&<button onClick={()=>{haptic();onShare();}} style={{flex:1,padding:"14px",background:"transparent",border:"1px solid "+ac+"40",color:ac,fontFamily:"monospace",fontSize:12,letterSpacing:2,cursor:"pointer",borderRadius:2}}>SHARE DEMON CALL</button>}
+      <button onClick={()=>{haptic();onClose();}} style={{flex:1,padding:"14px",background:"transparent",border:"1px solid "+(lm?"#000":ac+"40"),color:lm?"#000":ac,fontFamily:"monospace",fontSize:15,letterSpacing:3,cursor:"pointer",borderRadius:2}}>DISMISS</button>
+      {!ang&&onShare&&<button onClick={()=>{haptic();onShare();}} style={{flex:1,padding:"14px",background:"transparent",border:"1px solid "+(lm?"#000":ac+"40"),color:lm?"#000":ac,fontFamily:"monospace",fontSize:13,letterSpacing:2,cursor:"pointer",borderRadius:2}}>SHARE READING</button>}
     </div>
   </div></div>);
 };
@@ -236,7 +234,15 @@ export default function DecadenceGame(){
   const shareDemonCall=()=>{
     if(!oracleResult||oracleResult.type==="angelic")return;
     const d=oracleResult.demon;
-    const text="DEMON CALL: "+d.name+(d.aliases?" ("+d.aliases+")":"")+" (Mesh-"+d.mesh+")\n"+d.title+"\n"+d.type+" · ["+d.netSpan+"] · "+d.pitch+"\nDomain: "+d.domain+(d.rites&&d.rites[0]?"\nRite: ["+d.rites[0].seq+"] "+d.rites[0].desc:"")+"\n\nhttps://playdecadence.online";
+    let text="◈ DEMON CALL ◈\n"+d.name+(d.aliases?" ("+d.aliases+")":"")+"\n"+d.title+"\nMesh-"+d.mesh+" · "+d.type+" · ["+d.netSpan+"] · "+d.pitch+"\n";
+    text+="\nDomain: "+d.domain;
+    if(d.door)text+="\nDoor: "+d.door+" · "+d.planet+" · "+d.spine;
+    text+="\nPhase-"+d.phase+(d.phaseLimit?" · Phase-Limit":"");
+    if(d.decaCard)text+="\nDecadology: C/tp-#"+d.clusterType+" · ["+d.decaCard+"]";
+    if(d.rites&&d.rites.length>0){text+="\n\n◈ RITES ◈";d.rites.forEach(r=>{text+="\nRt-"+r.rt+":["+r.seq+"]"+(r.pathName?" → Pth-"+r.path+": "+r.pathName:"")+"\n"+r.desc;});}
+    if(d.rites){const pr=d.rites.find(r=>r.path&&PATHS[r.path]);if(pr){text+="\n\n◈ BOOK OF PATHS ◈\nPth-"+pr.path+": "+PATHS[pr.path].name+"\n"+PATHS[pr.path].lines.join("\n");}}
+    if(INTERPRETATIONS[oracleResult.score])text+="\n\n◈ INTERPRETATION ◈\n"+INTERPRETATIONS[Math.min(oracleResult.score,44)];
+    text+="\n\nScore: -"+oracleResult.score+" · Aeon Terminated\nhttps://playdecadence.online";
     if(navigator.share){navigator.share({title:"Demon Call: "+d.name,text}).catch(()=>{});}
     else if(navigator.clipboard){navigator.clipboard.writeText(text).then(()=>alert("Copied to clipboard"));}
   };
@@ -324,54 +330,54 @@ export default function DecadenceGame(){
             </div>)}
 
             {/* RULES — collapsible */}
-            <button onClick={()=>{haptic();setShowRules(!showRules);}} style={{padding:"5px 14px",background:"transparent",border:"1px solid "+accent+"30",color:accent,fontFamily:"monospace",fontSize:10,letterSpacing:2,cursor:"pointer",borderRadius:2,display:"block",margin:"0 auto 12px"}}>{showRules?"HIDE":""} {isSub?"SUBDECADENCE":"DECADENCE"} RULES</button>
-            {showRules&&(<div style={{padding:"14px 12px",textAlign:"left",border:"1px solid "+(isSub?"#1a001a":"#1a1a1a"),borderRadius:2,background:isSub?"rgba(20,0,20,0.3)":"rgba(0,0,0,0.3)",marginBottom:16}}>
-              <div style={{color:"#ccc",fontSize:15,lineHeight:1.9,fontFamily:"'Courier New',monospace"}}>{isSub?"The ultimate blasphemy. Add four Queens (valued 0) to the Decadence pack, bringing the total to forty cards. Play as Decadence, except making pairs which add to nine — corresponding to Numogram Syzygies. Negative results call lemurs from the Pandemonium Matrix.":"The Adept Orders of Decadence trace their system back to the submergence of Atlantis. Truncate a standard pack, removing royals, tens, and jokers — thirty-six cards remain. Five dealt face-up on the Atlantean Cross (Set-1), five face-down (Set-2). Pairs sum to ten. Each pair scores by its difference. Unpaired Set-1 cards penalize by raw value. An Aeon lasts until the first negative result. Negative scores call demons from the Pandemonium Matrix."}</div>
-            </div>)}
-
-            {/* ORIGINS — collapsible */}
-            <button onClick={()=>{haptic();setShowAbout(!showAbout);}} style={{padding:"5px 14px",background:"transparent",border:"1px solid "+accent+"30",color:accent,fontFamily:"monospace",fontSize:10,letterSpacing:2,cursor:"pointer",borderRadius:2,display:"block",margin:"0 auto 12px"}}>{showAbout?"HIDE ":""}ORIGINS</button>
-            {showAbout&&(<div style={{padding:"14px 12px",textAlign:"left",border:"1px solid #1a1a1a",borderRadius:2,background:"rgba(0,0,0,0.3)",marginTop:8,marginBottom:16}}>
-              <div style={{color:accent,fontSize:11,letterSpacing:3,marginBottom:8}}>◈ ORIGINS ◈</div>
-              <div style={{color:"#ccc",fontSize:14,lineHeight:1.9}}>
-                {isSub?"Subdecadence is the vigorously suppressed variant of the Decadence system — known amongst decadologists as 'the ultimate blasphemy.' Where Decadence operates under the Atlantean/AOE hermetic tradition (pairing to ten), Subdecadence pairs to nine, corresponding directly to the Numogram's syzygetic principle of zygonovism (nine-sum twinning). The four Queens (valued zero) correspond to the four Chaotic Xenodemons.":"Decadence is a gambling game and divination system associated with the Western tradition of Pandemonium practice, supposedly originating in Atlantis. The Adept Orders trace it to 10,000 BC. It is linked to Sumero-Babylonian geometry — the division of the circle into 360 (= 36 × 10) degrees. The western uptake of Pandemonium has its own esoteric gnosis called Decadology, assigning Amphidemons and Cyclic Chronodemons to nine cluster types."}
-              </div>
-              <div style={{color:"#ccc",fontSize:14,lineHeight:1.9,marginTop:10}}>
-                The Pandemonium Matrix is the complete system of Lemurian demonism and time-sorcery — Numogram (time-map) and Matrix (listing the names, numbers and attributes of the 45 demons). Five syzygetic demons (Katak, Djynxx, Oddubb, Murrumur, Uttunul) carry the fundamental currents. The system is constructed according to immanent criteria latent in decimal numeracy.
-              </div>
-              <div style={{color:"#666",fontSize:12,marginTop:12}}>Source: ccru.net/digithype/pandemonium.htm</div>
+            <button onClick={()=>{haptic();setShowRules(!showRules);}} style={{padding:"6px 14px",background:"transparent",border:"1px solid "+accent+"30",color:accent,fontFamily:"monospace",fontSize:12,letterSpacing:2,cursor:"pointer",borderRadius:2,display:"block",margin:"0 auto 12px"}}>{showRules?"HIDE":""} {isSub?"SUBDECADENCE":"DECADENCE"} RULES</button>
+            {showRules&&(<div style={{padding:"14px 12px",textAlign:"left",border:"1px solid "+(lightMode?"#ccc":"#1a1a1a"),borderRadius:2,background:lightMode?"rgba(0,0,0,0.03)":"rgba(0,0,0,0.3)",marginBottom:16}}>
+              <div style={{color:lightMode?"#000":"#ccc",fontSize:16,lineHeight:1.9,fontFamily:"'Courier New',monospace"}}>{isSub?"The ultimate blasphemy. Add four Queens (valued 0) to the Decadence pack, bringing the total to forty cards. Play as Decadence, except making pairs which add to nine — corresponding to Numogram Syzygies. Negative results call lemurs from the Pandemonium Matrix.":"The Adept Orders of Decadence trace their system back to the submergence of Atlantis. Truncate a standard pack, removing royals, tens, and jokers — thirty-six cards remain. Five dealt face-up on the Atlantean Cross (Set-1), five face-down (Set-2). Pairs sum to ten. Each pair scores by its difference. Unpaired Set-1 cards penalize by raw value. An Aeon lasts until the first negative result. Negative scores call demons from the Pandemonium Matrix."}</div>
             </div>)}
 
             {/* BOOK OF PATHS — collapsible */}
-            <button onClick={()=>{haptic();setShowPaths(!showPaths);}} style={{padding:"5px 14px",background:"transparent",border:"1px solid "+accent+"30",color:accent,fontFamily:"monospace",fontSize:10,letterSpacing:2,cursor:"pointer",borderRadius:2,display:"block",margin:"0 auto 12px"}}>{showPaths?"HIDE ":""}BOOK OF PATHS</button>
-            {showPaths&&(<div style={{padding:"14px 12px",textAlign:"left",border:"1px solid #1a1a1a",borderRadius:2,background:"rgba(0,0,0,0.3)",marginBottom:16,maxHeight:400,overflowY:"auto"}}>
-              <div style={{color:accent,fontSize:11,letterSpacing:3,marginBottom:12}}>◈ BOOK OF PATHS ◈</div>
-              <div style={{color:"#999",fontSize:13,lineHeight:1.8,marginBottom:14}}>84 paths mapped to the rites of the 45 demons by Vysparov's Pandemonium Concordance. Translated from the Tibetan by Chaim Horowitz, c. 1949. Predates the I Ching according to Chinese sources from the Warring States period.</div>
-              {Object.keys(PATHS).map(k=>{const p=PATHS[k];return(<div key={k} style={{marginBottom:14,paddingBottom:10,borderBottom:"1px solid #111"}}>
-                <div style={{color:accent,fontSize:12,letterSpacing:1,marginBottom:4}}>Pth-{k}: {p.name}</div>
-                {p.lines.map((line,i)=><div key={i} style={{color:"#998",fontSize:13,lineHeight:1.7,fontStyle:"italic"}}>{line}</div>)}
+            <button onClick={()=>{haptic();setShowPaths(!showPaths);}} style={{padding:"6px 14px",background:"transparent",border:"1px solid "+accent+"30",color:accent,fontFamily:"monospace",fontSize:12,letterSpacing:2,cursor:"pointer",borderRadius:2,display:"block",margin:"0 auto 12px"}}>{showPaths?"HIDE ":""}BOOK OF PATHS</button>
+            {showPaths&&(<div style={{padding:"14px 12px",textAlign:"left",border:"1px solid "+(lightMode?"#ccc":"#1a1a1a"),borderRadius:2,background:lightMode?"rgba(0,0,0,0.03)":"rgba(0,0,0,0.3)",marginBottom:16,maxHeight:400,overflowY:"auto"}}>
+              <div style={{color:accent,fontSize:13,letterSpacing:3,marginBottom:12}}>◈ BOOK OF PATHS ◈</div>
+              <div style={{color:lightMode?"#333":"#999",fontSize:15,lineHeight:1.8,marginBottom:14}}>84 paths mapped to the rites of the 45 demons by Vysparov's Pandemonium Concordance. Translated from the Tibetan by Chaim Horowitz, c. 1949.</div>
+              {Object.keys(PATHS).map(k=>{const p=PATHS[k];return(<div key={k} style={{marginBottom:14,paddingBottom:10,borderBottom:"1px solid "+(lightMode?"#ddd":"#111")}}>
+                <div style={{color:accent,fontSize:14,letterSpacing:1,marginBottom:4}}>Pth-{k}: {p.name}</div>
+                {p.lines.map((line,i)=><div key={i} style={{color:lightMode?"#333":"#998",fontSize:15,lineHeight:1.7,fontStyle:"italic"}}>{line}</div>)}
               </div>);})}
             </div>)}
 
             {/* ZONES — collapsible */}
-            <button onClick={()=>{haptic();setShowZones(!showZones);}} style={{padding:"5px 14px",background:"transparent",border:"1px solid "+accent+"30",color:accent,fontFamily:"monospace",fontSize:10,letterSpacing:2,cursor:"pointer",borderRadius:2,display:"block",margin:"0 auto 12px"}}>{showZones?"HIDE ":""}NUMOGRAM ZONES</button>
-            {showZones&&(<div style={{padding:"14px 12px",textAlign:"left",border:"1px solid #1a1a1a",borderRadius:2,background:"rgba(0,0,0,0.3)",marginBottom:16,maxHeight:400,overflowY:"auto"}}>
-              <div style={{color:accent,fontSize:11,letterSpacing:3,marginBottom:12}}>◈ TEN ZONES · DECIMAL LABYRINTH ◈</div>
-              {Object.keys(ZONES).map(k=>{const z=ZONES[k];const regionColor=z.region==="Plex"?"#9966ff":z.region==="Warp"?accent:"#0f0";return(<div key={k} style={{marginBottom:14,paddingBottom:10,borderBottom:"1px solid #111"}}>
+            <button onClick={()=>{haptic();setShowZones(!showZones);}} style={{padding:"6px 14px",background:"transparent",border:"1px solid "+accent+"30",color:accent,fontFamily:"monospace",fontSize:12,letterSpacing:2,cursor:"pointer",borderRadius:2,display:"block",margin:"0 auto 12px"}}>{showZones?"HIDE ":""}NUMOGRAM ZONES</button>
+            {showZones&&(<div style={{padding:"14px 12px",textAlign:"left",border:"1px solid "+(lightMode?"#ccc":"#1a1a1a"),borderRadius:2,background:lightMode?"rgba(0,0,0,0.03)":"rgba(0,0,0,0.3)",marginBottom:16,maxHeight:400,overflowY:"auto"}}>
+              <div style={{color:accent,fontSize:13,letterSpacing:3,marginBottom:12}}>◈ TEN ZONES · DECIMAL LABYRINTH ◈</div>
+              {Object.keys(ZONES).map(k=>{const z=ZONES[k];return(<div key={k} style={{marginBottom:14,paddingBottom:10,borderBottom:"1px solid "+(lightMode?"#ddd":"#111")}}>
                 <div style={{display:"flex",justifyContent:"space-between",alignItems:"center",marginBottom:4}}>
-                  <span style={{color:regionColor,fontSize:14,fontWeight:"bold"}}>Zone-{k}</span>
-                  <span style={{color:"#555",fontSize:10}}>{z.region} · {z.planet} · {z.spine}</span>
+                  <span style={{color:accent,fontSize:16,fontWeight:"bold"}}>Zone-{k}</span>
+                  <span style={{color:lightMode?"#666":"#555",fontSize:12}}>{z.region} · {z.planet} · {z.spine}</span>
                 </div>
-                <div style={{color:"#666",fontSize:11,marginBottom:4}}>Syzygy: {k}::{z.twin} · {z.current} · {z.gate} · Phoneme: <span style={{fontStyle:"italic"}}>{z.phoneme}</span> · Imps: {z.impulses}</div>
-                <div style={{color:"#999",fontSize:13,lineHeight:1.7}}>{z.desc}</div>
+                <div style={{color:lightMode?"#555":"#666",fontSize:13,marginBottom:4}}>Syzygy: {k}::{z.twin} · {z.current} · {z.gate} · Phoneme: <span style={{fontStyle:"italic"}}>{z.phoneme}</span> · Imps: {z.impulses}</div>
+                <div style={{color:lightMode?"#333":"#999",fontSize:15,lineHeight:1.7}}>{z.desc}</div>
               </div>);})}
             </div>)}
 
+            {/* ORIGINS — collapsible */}
+            <button onClick={()=>{haptic();setShowAbout(!showAbout);}} style={{padding:"6px 14px",background:"transparent",border:"1px solid "+accent+"30",color:accent,fontFamily:"monospace",fontSize:12,letterSpacing:2,cursor:"pointer",borderRadius:2,display:"block",margin:"0 auto 12px"}}>{showAbout?"HIDE ":""}ORIGINS</button>
+            {showAbout&&(<div style={{padding:"14px 12px",textAlign:"left",border:"1px solid "+(lightMode?"#ccc":"#1a1a1a"),borderRadius:2,background:lightMode?"rgba(0,0,0,0.03)":"rgba(0,0,0,0.3)",marginBottom:16}}>
+              <div style={{color:accent,fontSize:13,letterSpacing:3,marginBottom:8}}>◈ ORIGINS ◈</div>
+              <div style={{color:lightMode?"#000":"#ccc",fontSize:16,lineHeight:1.9}}>
+                {isSub?"Subdecadence is the vigorously suppressed variant of the Decadence system — known amongst decadologists as 'the ultimate blasphemy.' Where Decadence operates under the Atlantean/AOE hermetic tradition (pairing to ten), Subdecadence pairs to nine, corresponding directly to the Numogram's syzygetic principle of zygonovism (nine-sum twinning). The four Queens (valued zero) correspond to the four Chaotic Xenodemons.":"Decadence is a gambling game and divination system associated with the Western tradition of Pandemonium practice, supposedly originating in Atlantis. The Adept Orders trace it to 10,000 BC. It is linked to Sumero-Babylonian geometry — the division of the circle into 360 (= 36 × 10) degrees. The western uptake of Pandemonium has its own esoteric gnosis called Decadology, assigning Amphidemons and Cyclic Chronodemons to nine cluster types."}
+              </div>
+              <div style={{color:lightMode?"#000":"#ccc",fontSize:16,lineHeight:1.9,marginTop:10}}>
+                The Pandemonium Matrix is the complete system of Lemurian demonism and time-sorcery — Numogram (time-map) and Matrix (listing the names, numbers and attributes of the 45 demons). Five syzygetic demons (Katak, Djynxx, Oddubb, Murrumur, Uttunul) carry the fundamental currents. The system is constructed according to immanent criteria latent in decimal numeracy.
+              </div>
+              <div style={{color:lightMode?"#666":"#666",fontSize:14,marginTop:12}}>Source: ccru.net/digithype/pandemonium.htm</div>
+            </div>)}
+
             {/* CONTACT */}
-            <a href="https://x.com/playdecadence" target="_blank" rel="noopener noreferrer" onClick={()=>haptic()} style={{padding:"5px 14px",background:"transparent",border:"1px solid "+accent+"30",color:accent,fontFamily:"monospace",fontSize:10,letterSpacing:2,cursor:"pointer",borderRadius:2,display:"block",margin:"0 auto 12px",textAlign:"center",textDecoration:"none",boxSizing:"border-box"}}>CONTACT</a>
+            <button onClick={()=>{haptic();window.open("https://x.com/playdecadence","_blank");}} style={{padding:"6px 14px",background:"transparent",border:"1px solid "+accent+"30",color:accent,fontFamily:"monospace",fontSize:12,letterSpacing:2,cursor:"pointer",borderRadius:2,display:"block",margin:"0 auto 12px"}}>CONTACT</button>
 
             {/* LIGHT/DARK MODE */}
-            <button onClick={()=>{haptic();const v=!lightMode;setLightMode(v);saveData("lightMode",v);}} style={{padding:"5px 14px",background:"transparent",border:"1px solid "+accent+"30",color:accent,fontFamily:"monospace",fontSize:10,letterSpacing:2,cursor:"pointer",borderRadius:2,display:"block",margin:"0 auto 12px"}}>{lightMode?"◑ DARK MODE":"◐ LIGHT MODE"}</button>
+            <button onClick={()=>{haptic();const v=!lightMode;setLightMode(v);saveData("lightMode",v);}} style={{padding:"6px 14px",background:"transparent",border:"1px solid "+accent+"30",color:accent,fontFamily:"monospace",fontSize:12,letterSpacing:2,cursor:"pointer",borderRadius:2,display:"block",margin:"0 auto 12px"}}>{lightMode?"◑ DARK MODE":"◐ LIGHT MODE"}</button>
 
           </div>
         )}
