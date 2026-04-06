@@ -283,8 +283,8 @@ export default function DecadenceGame(){
         {/* SCORE BAR */}
         {gamePhase!=="menu"&&(<div style={{display:"flex",justifyContent:"space-around",alignItems:"center",padding:"5px 10px",marginBottom:6,background:lightMode?"rgba(0,0,0,0.04)":"rgba(0,0,0,0.5)",border:"1px solid "+T.border,borderRadius:2,fontSize:11,letterSpacing:1}}>
           <span style={{color:T.muted}}>AEON <span style={{color:T.accent}}>{aeonScore}</span></span>
-          <span style={{color:T.muted}}>ROUND <span style={{color:lightMode?"#06c":"#0ff"}}>{roundNum}</span></span>
-          <span style={{color:T.muted}}>SCORE <span style={{color:score>=0?T.accent:"#f04"}}>{score}</span></span>
+          <span style={{color:T.muted}}>ROUND <span style={{color:accent}}>{roundNum}</span></span>
+          <span style={{color:T.muted}}>SCORE <span style={{color:score>=0?T.accent:accent}}>{score}</span></span>
         </div>)}
 
         {/* ═══ MENU ═══ */}
@@ -296,7 +296,7 @@ export default function DecadenceGame(){
             {/* STATS BAR */}
             {(bestAeon>0||totalGames>0)&&(<div style={{display:"flex",justifyContent:"center",gap:16,marginBottom:16,fontSize:11,color:"#666"}}>
               {bestAeon>0&&<span>BEST AEON: <span style={{color:accent}}>{bestAeon}</span></span>}
-              {bestRounds>0&&<span>LONGEST: <span style={{color:"#0ff"}}>{bestRounds}</span> RNDs</span>}
+              {bestRounds>0&&<span>LONGEST: <span style={{color:accent}}>{bestRounds}</span> RNDs</span>}
               <span>GAMES: <span style={{color:"#999"}}>{totalGames}</span></span>
             </div>)}
 
@@ -309,7 +309,7 @@ export default function DecadenceGame(){
                 <div key={d.mesh} onClick={()=>{haptic();setOracleResult({type:"demonic",score:parseInt(d.mesh),demon:d});}} style={{padding:"6px 8px",borderBottom:"1px solid #1a1a1a",cursor:"pointer"}}>
                   <div style={{display:"flex",justifyContent:"space-between",alignItems:"center"}}>
                     <div>
-                      <span style={{color:d.syzygy?"#ffd700":accent,fontSize:13,fontWeight:d.syzygy?"bold":"normal"}}>{d.name}</span>
+                      <span style={{color:accent,fontSize:13,fontWeight:d.syzygy?"bold":"normal"}}>{d.name}</span>
                       <span style={{color:"#555",fontSize:11,marginLeft:8}}>M-{d.mesh} [{d.netSpan}]</span>
                     </div>
                     <span style={{color:"#555",fontSize:10}}>{d.pitch}</span>
@@ -324,7 +324,7 @@ export default function DecadenceGame(){
               <button onClick={()=>{haptic();setShowHistory(!showHistory);}} style={{padding:"5px 14px",background:"transparent",border:"1px solid "+accent+"30",color:accent,fontFamily:"monospace",fontSize:10,letterSpacing:2,cursor:"pointer",borderRadius:2,marginBottom:showHistory?8:0,display:"block",margin:"0 auto "+(showHistory?"8":"12")+"px"}}>{showHistory?"HIDE":"SHOW"} DEMON LOG ({demonLog.length})</button>
               {showHistory&&<div style={{maxHeight:200,overflowY:"auto",border:"1px solid #1a1a1a",borderRadius:2,padding:"6px 8px",background:"rgba(0,0,0,0.3)"}}>
                 {demonLog.map((e,i)=><div key={i} onClick={()=>viewLoggedDemon(e)} style={{fontSize:11,color:"#777",marginBottom:4,borderBottom:"1px solid #111",paddingBottom:4,cursor:"pointer"}}>
-                  <span style={{color:"#f04"}}>{e.demon}</span> <span style={{color:"#555"}}>Mesh-{e.mesh} · -{e.score} · Rnd {e.rounds} · {e.mode}</span>
+                  <span style={{color:accent}}>{e.demon}</span> <span style={{color:"#555"}}>Mesh-{e.mesh} · -{e.score} · Rnd {e.rounds} · {e.mode}</span>
                 </div>)}
               </div>}
             </div>)}
@@ -355,7 +355,7 @@ export default function DecadenceGame(){
                   <span style={{color:accent,fontSize:16,fontWeight:"bold"}}>Zone-{k}</span>
                   <span style={{color:lightMode?"#666":"#555",fontSize:12}}>{z.region} · {z.planet} · {z.spine}</span>
                 </div>
-                <div style={{color:lightMode?"#555":"#666",fontSize:13,marginBottom:4}}>Syzygy: {k}::{z.twin} · {z.current} · {z.gate} · Phoneme: <span style={{fontStyle:"italic"}}>{z.phoneme}</span> · Imps: {z.impulses}</div>
+                <div style={{color:lightMode?"#555":"#666",fontSize:13,marginBottom:4}}>Syzygy: {k}::{z.twin} · {z.current} · {z.gate} · Phoneme: <span style={{fontStyle:"italic"}}>{z.phoneme}</span></div>
                 <div style={{color:lightMode?"#333":"#999",fontSize:15,lineHeight:1.7}}>{z.desc}</div>
               </div>);})}
             </div>)}
@@ -385,7 +385,7 @@ export default function DecadenceGame(){
 
         {/* ═══ GAME BOARD ═══ */}
         {(gamePhase==="playing"||gamePhase==="pairing")&&(<>
-          <div style={{textAlign:"center",padding:"3px 8px",marginBottom:4,color:message.includes("VALID")||message.includes("≠")?"#ff4444":accent,fontSize:11,letterSpacing:1,minHeight:16,fontWeight:message.includes("VALID")?"bold":"normal"}}>{message}</div>
+          <div style={{textAlign:"center",padding:"3px 8px",marginBottom:4,color:message.includes("VALID")||message.includes("≠")?accent:accent,fontSize:11,letterSpacing:1,minHeight:16,fontWeight:message.includes("VALID")?"bold":"normal"}}>{message}</div>
 
           <div style={{marginBottom:6}}>
             <div style={{color:"#555",fontSize:9,letterSpacing:3,textAlign:"center",marginBottom:4}}>◈ SET-1 · ATLANTEAN CROSS ◈</div>
@@ -410,7 +410,7 @@ export default function DecadenceGame(){
           </div>
 
           <div style={{display:"flex",justifyContent:"center",gap:8,marginTop:10}}>
-            {gamePhase==="pairing"&&<button onClick={skipPair} style={{padding:"6px 16px",background:"transparent",border:"1px solid #ff444440",color:"#ff4444",fontFamily:"monospace",fontSize:11,letterSpacing:2,cursor:"pointer",borderRadius:2}}>SKIP</button>}
+            {gamePhase==="pairing"&&<button onClick={skipPair} style={{padding:"6px 16px",background:"transparent",border:"1px solid "+accent+"40",color:accent,fontFamily:"monospace",fontSize:11,letterSpacing:2,cursor:"pointer",borderRadius:2}}>SKIP</button>}
             {allRevealed&&gamePhase!=="pairing"&&<button onClick={()=>{haptic();endRound();}} style={{padding:"6px 20px",background:"transparent",border:"1px solid "+accent,color:accent,fontFamily:"monospace",fontSize:11,letterSpacing:3,cursor:"pointer",borderRadius:2,boxShadow:"0 0 15px "+accent+"18"}}>END ROUND</button>}
           </div>
 
@@ -424,19 +424,19 @@ export default function DecadenceGame(){
 
         {/* ═══ ROUND END ═══ */}
         {gamePhase==="roundEnd"&&(<div style={{textAlign:"center",paddingTop:36}}>
-          <div style={{color:"#ffd700",fontSize:11,letterSpacing:4,marginBottom:6}}>ROUND COMPLETE</div>
-          <div style={{color:"#ffd700",fontSize:38,fontWeight:"bold",marginBottom:6}}>+{score}</div>
+          <div style={{color:accent,fontSize:11,letterSpacing:4,marginBottom:6}}>ROUND COMPLETE</div>
+          <div style={{color:accent,fontSize:38,fontWeight:"bold",marginBottom:6}}>+{score}</div>
           <div style={{color:"#999",fontSize:13,marginBottom:24}}>Aeon Total: {aeonScore}</div>
-          <button onClick={()=>{haptic();dealRound();}} style={{padding:"10px 28px",background:"transparent",border:"1px solid #ffd700",color:"#ffd700",fontFamily:"monospace",fontSize:13,letterSpacing:4,cursor:"pointer",borderRadius:2}}>NEXT ROUND</button>
+          <button onClick={()=>{haptic();dealRound();}} style={{padding:"10px 28px",background:"transparent",border:"1px solid "+accent,color:accent,fontFamily:"monospace",fontSize:13,letterSpacing:4,cursor:"pointer",borderRadius:2}}>NEXT ROUND</button>
         </div>)}
 
         {/* ═══ AEON END ═══ */}
         {gamePhase==="aeonEnd"&&(<div style={{textAlign:"center",paddingTop:36}}>
-          <div style={{color:"#f04",fontSize:11,letterSpacing:4,marginBottom:6}}>AEON TERMINATED</div>
-          <div style={{color:"#f04",fontSize:32,fontWeight:"bold",marginBottom:6}}>DEMON CALL</div>
+          <div style={{color:accent,fontSize:11,letterSpacing:4,marginBottom:6}}>AEON TERMINATED</div>
+          <div style={{color:accent,fontSize:32,fontWeight:"bold",marginBottom:6}}>DEMON CALL</div>
           <div style={{color:"#999",fontSize:13,marginBottom:24}}>Final Aeon: {aeonScore} · {roundNum} rounds</div>
           <div style={{display:"flex",gap:8,justifyContent:"center",flexWrap:"wrap"}}>
-            <button onClick={()=>{haptic();setOracleResult({type:"demonic",score:Math.abs(score),demon:DEMONS[Math.min(Math.abs(score),44)]||DEMONS[0]});}} style={{padding:"10px 20px",background:"transparent",border:"1px solid #f04",color:"#f04",fontFamily:"monospace",fontSize:12,letterSpacing:3,cursor:"pointer",borderRadius:2}}>VIEW ORACLE</button>
+            <button onClick={()=>{haptic();setOracleResult({type:"demonic",score:Math.abs(score),demon:DEMONS[Math.min(Math.abs(score),44)]||DEMONS[0]});}} style={{padding:"10px 20px",background:"transparent",border:"1px solid "+accent,color:accent,fontFamily:"monospace",fontSize:12,letterSpacing:3,cursor:"pointer",borderRadius:2}}>VIEW ORACLE</button>
             <button onClick={()=>{haptic();setGamePhase("menu");}} style={{padding:"10px 20px",background:"transparent",border:"1px solid #44444440",color:"#777",fontFamily:"monospace",fontSize:12,letterSpacing:3,cursor:"pointer",borderRadius:2}}>NEW AEON</button>
           </div>
         </div>)}
