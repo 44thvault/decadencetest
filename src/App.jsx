@@ -250,11 +250,11 @@ export default function DecadenceGame(){
   const allRevealed=revealedIndex>=4;
   
   const vh = typeof window !== 'undefined' ? window.innerHeight : 700;
-  const vw = typeof window !== 'undefined' ? Math.min(window.innerWidth, 420) : 420;
+  const vw = typeof window !== 'undefined' ? Math.min(window.innerWidth, 400) : 400;
   const fromHeight = Math.floor((vh - 180) / 4);
-  const fromWidth = Math.floor((vw - 20) / 3.15);
-  const CH = Math.max(65, Math.min(170, fromHeight, fromWidth));
-  const CW = Math.round(CH / 1.55);
+  const fromWidth = Math.floor((vw - 24) / 3.2);
+  const CH = Math.max(65, Math.min(145, fromHeight, fromWidth));
+  const CW = Math.round(CH / 1.5);
 
   // #13: view a demon from the log
   const viewLoggedDemon=(entry)=>{
@@ -266,7 +266,7 @@ export default function DecadenceGame(){
   return(
     <div style={{minHeight:"100dvh",width:"100%",background:T.bg,color:T.text,fontFamily:"'Courier New',monospace",position:"relative",overflow:"hidden",WebkitTapHighlightColor:"transparent",transition:"background 0.3s, color 0.3s"}}>
 
-      <div style={{position:"relative",zIndex:2,maxWidth:420,margin:"0 auto",padding:"6px 8px 10px",minHeight:"100dvh",overflow:gamePhase==="menu"?"auto":"auto"}}>
+      <div style={{position:"relative",zIndex:2,maxWidth:400,margin:"0 auto",padding:"6px 8px 10px",minHeight:"100dvh",overflow:gamePhase==="menu"?"auto":"auto"}}>
 
         <header style={{textAlign:"center",marginBottom:gamePhase==="menu"?6:2,paddingTop:gamePhase==="menu"?4:2}}>
           {gamePhase==="menu"&&<div style={{fontSize:11,letterSpacing:5,color:T.accent,opacity:0.5,marginBottom:1}}>{isSub?"◈ LEMURIAN NECRONOMICON ◈":"◈ PANDEMONIUM MATRIX ◈"}</div>}
@@ -404,8 +404,8 @@ export default function DecadenceGame(){
 
           <div>
             <div style={{color:lightMode?"#000":"#fff",fontSize:8,letterSpacing:3,textAlign:"center",marginBottom:2}}>◈ SET-2 · CONCEALED ◈</div>
-            <div style={{display:"flex",justifyContent:"center",gap:Math.max(2, Math.min(5, Math.floor((vw - 5*Math.round(CH*0.6/1.55))/6)))}}>
-              {set2.map((card,i)=><Card key={card.id} card={card} faceUp={i<=revealedIndex} selected={selectedSet2===i} matched={matchedSet2.has(i)} onClick={gamePhase==="playing"&&i===revealedIndex+1&&!matchedSet2.has(i)?()=>revealNext(i):null} w={Math.round(CH*0.6/1.55)} h={Math.round(CH*0.6)}/>)}
+            <div style={{display:"flex",justifyContent:"center",gap:Math.max(2, Math.min(4, Math.floor((vw - 5*CW)/6)))}}>
+              {set2.map((card,i)=><Card key={card.id} card={card} faceUp={i<=revealedIndex} selected={selectedSet2===i} matched={matchedSet2.has(i)} onClick={gamePhase==="playing"&&i===revealedIndex+1&&!matchedSet2.has(i)?()=>revealNext(i):null} w={CW} h={CH}/>)}
             </div>
           </div>
 
