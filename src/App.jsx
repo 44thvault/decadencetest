@@ -251,9 +251,9 @@ export default function DecadenceGame(){
   
   const vh = typeof window !== 'undefined' ? window.innerHeight : 700;
   const vw = typeof window !== 'undefined' ? Math.min(window.innerWidth, 400) : 400;
-  const fromHeight = Math.floor((vh - 210) / 4);
+  const fromHeight = Math.floor((vh - 200) / 4);
   const fromWidth = Math.floor((vw - 30) / 5 * 1.77);
-  const CH = Math.max(75, Math.min(130, fromHeight, fromWidth));
+  const CH = Math.max(65, Math.min(115, fromHeight, fromWidth));
   const CW = Math.round(CH / 1.77);
 
   // #13: view a demon from the log
@@ -268,20 +268,20 @@ export default function DecadenceGame(){
 
       <div style={{position:"relative",zIndex:2,maxWidth:400,margin:"0 auto",padding:"6px 8px 10px",minHeight:"100dvh",overflow:gamePhase==="menu"?"auto":"auto"}}>
 
-        <header style={{textAlign:"center",marginBottom:6,paddingTop:4}}>
-          <div style={{fontSize:11,letterSpacing:5,color:T.accent,opacity:0.5,marginBottom:1}}>{isSub?"◈ LEMURIAN NECRONOMICON ◈":"◈ PANDEMONIUM MATRIX ◈"}</div>
-          <h1 style={{fontSize:22,fontWeight:"bold",margin:0,letterSpacing:4,color:T.accent,textShadow:lightMode?"none":"0 0 20px "+accent+"60,0 0 40px "+accent+"20",transform:glitchText?"translate("+glitchOffset.current.x+"px,"+glitchOffset.current.y+"px)":"none"}}>{isSub?"SUBDECADENCE":"DECADENCE"}</h1>
-          <div style={{fontSize:13,color:lightMode?"#000":"#fff",letterSpacing:2,marginTop:2}}>{isSub?<>NEOLEMURIAN TIME-SORCERY<br/>SYZYGIES → 9</>:"ATLANTEAN TIME-SORCERY · PAIRS → 10"}</div>
+        <header style={{textAlign:"center",marginBottom:gamePhase==="menu"?6:2,paddingTop:gamePhase==="menu"?4:2}}>
+          {gamePhase==="menu"&&<div style={{fontSize:11,letterSpacing:5,color:T.accent,opacity:0.5,marginBottom:1}}>{isSub?"◈ LEMURIAN NECRONOMICON ◈":"◈ PANDEMONIUM MATRIX ◈"}</div>}
+          <h1 style={{fontSize:gamePhase==="menu"?22:14,fontWeight:"bold",margin:0,letterSpacing:gamePhase==="menu"?4:3,color:T.accent,textShadow:lightMode?"none":"0 0 20px "+accent+"60,0 0 40px "+accent+"20",transform:glitchText?"translate("+glitchOffset.current.x+"px,"+glitchOffset.current.y+"px)":"none"}}>{isSub?"SUBDECADENCE":"DECADENCE"}</h1>
+          {gamePhase==="menu"&&<div style={{fontSize:13,color:lightMode?"#000":"#fff",letterSpacing:2,marginTop:2}}>{isSub?<>NEOLEMURIAN TIME-SORCERY<br/>SYZYGIES → 9</>:"ATLANTEAN TIME-SORCERY · PAIRS → 10"}</div>}
         </header>
 
-        {/* MODE TOGGLE + CONTROLS */}
-        <div style={{display:"flex",justifyContent:"center",gap:6,marginBottom:8,flexWrap:"wrap"}}>
+        {/* MODE TOGGLE + CONTROLS — menu only */}
+        {gamePhase==="menu"&&<div style={{display:"flex",justifyContent:"center",gap:6,marginBottom:8,flexWrap:"wrap"}}>
           <button onClick={()=>{haptic();setMode(m=>m==="decadence"?"subdecadence":"decadence");}} style={{padding:"5px 12px",background:"transparent",border:"1px solid "+T.accentFaint,color:T.accent,fontFamily:"monospace",fontSize:10,letterSpacing:2,cursor:"pointer",borderRadius:2}}>⇄ {isSub?"DECADENCE":"SUBDECADENCE"}</button>
-          {gamePhase==="menu"&&<button onClick={()=>{haptic();setShowTutorial(true);}} style={{padding:"5px 12px",background:"transparent",border:"1px solid "+(lightMode?"#ccc":"#333"),color:T.muted,fontFamily:"monospace",fontSize:10,letterSpacing:2,cursor:"pointer",borderRadius:2}}>? RULES</button>}
-        </div>
+          <button onClick={()=>{haptic();setShowTutorial(true);}} style={{padding:"5px 12px",background:"transparent",border:"1px solid "+(lightMode?"#ccc":"#333"),color:T.muted,fontFamily:"monospace",fontSize:10,letterSpacing:2,cursor:"pointer",borderRadius:2}}>? RULES</button>
+        </div>}
 
         {/* SCORE BAR */}
-        {gamePhase!=="menu"&&(<div style={{display:"flex",justifyContent:"space-around",alignItems:"center",padding:"5px 10px",marginBottom:6,background:lightMode?"rgba(0,0,0,0.04)":"rgba(0,0,0,0.5)",border:"1px solid "+T.border,borderRadius:2,fontSize:11,letterSpacing:1}}>
+        {gamePhase!=="menu"&&(<div style={{display:"flex",justifyContent:"space-around",alignItems:"center",padding:"3px 10px",marginBottom:3,background:lightMode?"rgba(0,0,0,0.04)":"rgba(0,0,0,0.5)",border:"1px solid "+T.border,borderRadius:2,fontSize:10,letterSpacing:1}}>
           <span style={{color:T.muted}}>AEON <span style={{color:T.accent}}>{aeonScore}</span></span>
           <span style={{color:T.muted}}>ROUND <span style={{color:accent}}>{roundNum}</span></span>
           <span style={{color:T.muted}}>SCORE <span style={{color:score>=0?T.accent:accent}}>{score}</span></span>
@@ -385,37 +385,37 @@ export default function DecadenceGame(){
 
         {/* ═══ GAME BOARD ═══ */}
         {(gamePhase==="playing"||gamePhase==="pairing")&&(<>
-          <div style={{textAlign:"center",padding:"3px 8px",marginBottom:4,color:message.includes("VALID")||message.includes("≠")?accent:accent,fontSize:11,letterSpacing:1,minHeight:16,fontWeight:message.includes("VALID")?"bold":"normal"}}>{message}</div>
+          <div style={{textAlign:"center",padding:"2px 8px",marginBottom:2,color:accent,fontSize:10,letterSpacing:1,minHeight:14,fontWeight:message.includes("VALID")?"bold":"normal"}}>{message}</div>
 
-          <div style={{marginBottom:6}}>
-            <div style={{color:"#555",fontSize:9,letterSpacing:3,textAlign:"center",marginBottom:4}}>◈ SET-1 · ATLANTEAN CROSS ◈</div>
-            <div style={{display:"flex",flexDirection:"column",alignItems:"center",gap:3}}>
-              <div style={{textAlign:"center"}}><div style={{color:"#333",fontSize:7,letterSpacing:2,marginBottom:2}}>FAR FUTURE</div><Card card={set1[0]} faceUp selected={false} matched={matchedSet1.has(0)} onClick={()=>attemptPair(0)} w={CW} h={CH} flash={flashCard===0}/></div>
-              <div style={{display:"inline-flex",gap:5,alignItems:"center"}}>
-                <div style={{textAlign:"center"}}><div style={{color:"#333",fontSize:7,letterSpacing:2,marginBottom:2}}>DESTRUCTIVE</div><Card card={set1[1]} faceUp selected={false} matched={matchedSet1.has(1)} onClick={()=>attemptPair(1)} w={CW} h={CH} flash={flashCard===1}/></div>
-                <div style={{textAlign:"center"}}><div style={{color:"#333",fontSize:7,letterSpacing:2,marginBottom:2}}>CREATIVE</div><Card card={set1[2]} faceUp selected={false} matched={matchedSet1.has(2)} onClick={()=>attemptPair(2)} w={CW} h={CH} flash={flashCard===2}/></div>
-                <div style={{textAlign:"center"}}><div style={{color:"#333",fontSize:7,letterSpacing:2,marginBottom:2}}>MEMORIES</div><Card card={set1[3]} faceUp selected={false} matched={matchedSet1.has(3)} onClick={()=>attemptPair(3)} w={CW} h={CH} flash={flashCard===3}/></div>
+          <div style={{marginBottom:3}}>
+            <div style={{color:"#555",fontSize:8,letterSpacing:3,textAlign:"center",marginBottom:2}}>◈ SET-1 · ATLANTEAN CROSS ◈</div>
+            <div style={{display:"flex",flexDirection:"column",alignItems:"center",gap:2}}>
+              <div style={{textAlign:"center"}}><div style={{color:lightMode?"#999":"#333",fontSize:7,letterSpacing:2,marginBottom:1}}>FAR FUTURE</div><Card card={set1[0]} faceUp selected={false} matched={matchedSet1.has(0)} onClick={()=>attemptPair(0)} w={CW} h={CH} flash={flashCard===0}/></div>
+              <div style={{display:"inline-flex",gap:4,alignItems:"center"}}>
+                <div style={{textAlign:"center"}}><div style={{color:lightMode?"#999":"#333",fontSize:7,letterSpacing:2,marginBottom:1}}>DESTRUCTIVE</div><Card card={set1[1]} faceUp selected={false} matched={matchedSet1.has(1)} onClick={()=>attemptPair(1)} w={CW} h={CH} flash={flashCard===1}/></div>
+                <div style={{textAlign:"center"}}><div style={{color:lightMode?"#999":"#333",fontSize:7,letterSpacing:2,marginBottom:1}}>CREATIVE</div><Card card={set1[2]} faceUp selected={false} matched={matchedSet1.has(2)} onClick={()=>attemptPair(2)} w={CW} h={CH} flash={flashCard===2}/></div>
+                <div style={{textAlign:"center"}}><div style={{color:lightMode?"#999":"#333",fontSize:7,letterSpacing:2,marginBottom:1}}>MEMORIES</div><Card card={set1[3]} faceUp selected={false} matched={matchedSet1.has(3)} onClick={()=>attemptPair(3)} w={CW} h={CH} flash={flashCard===3}/></div>
               </div>
-              <div style={{textAlign:"center"}}><Card card={set1[4]} faceUp selected={false} matched={matchedSet1.has(4)} onClick={()=>attemptPair(4)} w={CW} h={CH} flash={flashCard===4}/><div style={{color:"#333",fontSize:7,letterSpacing:2,marginTop:2}}>DEEP PAST</div></div>
+              <div style={{textAlign:"center"}}><Card card={set1[4]} faceUp selected={false} matched={matchedSet1.has(4)} onClick={()=>attemptPair(4)} w={CW} h={CH} flash={flashCard===4}/><div style={{color:lightMode?"#999":"#333",fontSize:7,letterSpacing:2,marginTop:1}}>DEEP PAST</div></div>
             </div>
           </div>
 
-          <div style={{height:1,background:"linear-gradient(90deg,transparent,"+accent+"25,transparent)",marginBottom:6}}/>
+          <div style={{height:1,background:"linear-gradient(90deg,transparent,"+accent+"25,transparent)",marginBottom:3}}/>
 
           <div>
-            <div style={{color:"#555",fontSize:9,letterSpacing:3,textAlign:"center",marginBottom:4}}>◈ SET-2 · CONCEALED ◈</div>
+            <div style={{color:"#555",fontSize:8,letterSpacing:3,textAlign:"center",marginBottom:2}}>◈ SET-2 · CONCEALED ◈</div>
             <div style={{display:"flex",justifyContent:"center",gap:Math.max(3, Math.min(5, Math.floor((400 - 5*CW)/6)))}}>
               {set2.map((card,i)=><Card key={card.id} card={card} faceUp={i<=revealedIndex} selected={selectedSet2===i} matched={matchedSet2.has(i)} onClick={gamePhase==="playing"&&i===revealedIndex+1&&!matchedSet2.has(i)?()=>revealNext(i):null} w={CW} h={CH}/>)}
             </div>
           </div>
 
-          <div style={{display:"flex",justifyContent:"center",gap:8,marginTop:12,marginBottom:4}}>
-            {gamePhase==="pairing"&&<button onClick={skipPair} style={{padding:"12px 28px",background:"transparent",border:"2px solid "+accent+"60",color:accent,fontFamily:"monospace",fontSize:14,letterSpacing:3,cursor:"pointer",borderRadius:2,minWidth:120}}>SKIP</button>}
-            {allRevealed&&gamePhase!=="pairing"&&<button onClick={()=>{haptic();endRound();}} style={{padding:"12px 28px",background:"transparent",border:"2px solid "+accent,color:accent,fontFamily:"monospace",fontSize:14,letterSpacing:3,cursor:"pointer",borderRadius:2,boxShadow:"0 0 15px "+accent+"18",minWidth:120}}>END ROUND</button>}
+          <div style={{display:"flex",justifyContent:"center",gap:8,marginTop:6,marginBottom:2}}>
+            {gamePhase==="pairing"&&<button onClick={skipPair} style={{padding:"8px 20px",background:"transparent",border:"1px solid "+accent+"50",color:accent,fontFamily:"monospace",fontSize:12,letterSpacing:2,cursor:"pointer",borderRadius:2}}>SKIP</button>}
+            {allRevealed&&gamePhase!=="pairing"&&<button onClick={()=>{haptic();endRound();}} style={{padding:"8px 20px",background:"transparent",border:"1px solid "+accent,color:accent,fontFamily:"monospace",fontSize:12,letterSpacing:3,cursor:"pointer",borderRadius:2,boxShadow:"0 0 15px "+accent+"18"}}>END ROUND</button>}
           </div>
 
           {/* #6: Pairs log — collapsed by default, show last pair only */}
-          {roundResults.length>0&&(<div style={{marginTop:8,padding:"6px 10px",background:"rgba(0,0,0,0.35)",border:"1px solid #1a1a1a",borderRadius:2,fontSize:11}}>
+          {roundResults.length>0&&(<div style={{marginTop:4,padding:"4px 8px",background:lightMode?"rgba(0,0,0,0.03)":"rgba(0,0,0,0.35)",border:"1px solid "+(lightMode?"#ddd":"#1a1a1a"),borderRadius:2,fontSize:10}}>
             <div style={{color:"#555",letterSpacing:2,marginBottom:3,fontSize:9}}>PAIRS ({roundResults.length})</div>
             <div style={{color:accent}}>{roundResults[roundResults.length-1].cards[0].value}{SS[roundResults[roundResults.length-1].cards[0].suit]} + {roundResults[roundResults.length-1].cards[1].value}{SS[roundResults[roundResults.length-1].cards[1].suit]} = {targetSum} +{roundResults[roundResults.length-1].score}</div>
             {roundResults.length>1&&<div style={{color:"#444",fontSize:10,marginTop:2}}>Total from pairs: +{roundResults.reduce((s,r)=>s+r.score,0)}</div>}
