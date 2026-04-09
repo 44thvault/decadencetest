@@ -388,22 +388,22 @@ export default function DecadenceGame(){
           <div style={{textAlign:"center",padding:"2px 8px",marginBottom:2,color:accent,fontSize:10,letterSpacing:1,minHeight:14,fontWeight:message.includes("VALID")?"bold":"normal"}}>{message}</div>
 
           <div style={{marginBottom:3}}>
-            <div style={{color:"#555",fontSize:8,letterSpacing:3,textAlign:"center",marginBottom:2}}>◈ SET-1 · ATLANTEAN CROSS ◈</div>
-            <div style={{display:"flex",flexDirection:"column",alignItems:"center",gap:2}}>
-              <div style={{textAlign:"center"}}><div style={{color:lightMode?"#999":"#333",fontSize:7,letterSpacing:2,marginBottom:1}}>FAR FUTURE</div><Card card={set1[0]} faceUp selected={false} matched={matchedSet1.has(0)} onClick={()=>attemptPair(0)} w={CW} h={CH} flash={flashCard===0}/></div>
-              <div style={{display:"inline-flex",gap:4,alignItems:"center"}}>
-                <div style={{textAlign:"center"}}><div style={{color:lightMode?"#999":"#333",fontSize:7,letterSpacing:2,marginBottom:1}}>DESTRUCTIVE</div><Card card={set1[1]} faceUp selected={false} matched={matchedSet1.has(1)} onClick={()=>attemptPair(1)} w={CW} h={CH} flash={flashCard===1}/></div>
-                <div style={{textAlign:"center"}}><div style={{color:lightMode?"#999":"#333",fontSize:7,letterSpacing:2,marginBottom:1}}>CREATIVE</div><Card card={set1[2]} faceUp selected={false} matched={matchedSet1.has(2)} onClick={()=>attemptPair(2)} w={CW} h={CH} flash={flashCard===2}/></div>
-                <div style={{textAlign:"center"}}><div style={{color:lightMode?"#999":"#333",fontSize:7,letterSpacing:2,marginBottom:1}}>MEMORIES</div><Card card={set1[3]} faceUp selected={false} matched={matchedSet1.has(3)} onClick={()=>attemptPair(3)} w={CW} h={CH} flash={flashCard===3}/></div>
+            <div style={{color:lightMode?"#000":"#fff",fontSize:8,letterSpacing:3,textAlign:"center",marginBottom:2}}>◈ SET-1 · ATLANTEAN CROSS ◈</div>
+            <div style={{display:"flex",flexDirection:"column",alignItems:"center",gap:3}}>
+              <div style={{textAlign:"center"}}><div style={{color:lightMode?"#000":"#fff",fontSize:7,letterSpacing:2,marginBottom:1}}>FAR FUTURE</div><Card card={set1[0]} faceUp selected={false} matched={matchedSet1.has(0)} onClick={()=>attemptPair(0)} w={CW} h={CH} flash={flashCard===0}/></div>
+              <div style={{display:"flex",justifyContent:"center",gap:Math.max(3,Math.floor((CW*3+12-CW*3)/2))}}>
+                <div style={{textAlign:"center"}}><div style={{color:lightMode?"#000":"#fff",fontSize:7,letterSpacing:2,marginBottom:1}}>DESTRUCTIVE</div><Card card={set1[1]} faceUp selected={false} matched={matchedSet1.has(1)} onClick={()=>attemptPair(1)} w={CW} h={CH} flash={flashCard===1}/></div>
+                <div style={{textAlign:"center"}}><div style={{color:lightMode?"#000":"#fff",fontSize:7,letterSpacing:2,marginBottom:1}}>CREATIVE</div><Card card={set1[2]} faceUp selected={false} matched={matchedSet1.has(2)} onClick={()=>attemptPair(2)} w={CW} h={CH} flash={flashCard===2}/></div>
+                <div style={{textAlign:"center"}}><div style={{color:lightMode?"#000":"#fff",fontSize:7,letterSpacing:2,marginBottom:1}}>MEMORIES</div><Card card={set1[3]} faceUp selected={false} matched={matchedSet1.has(3)} onClick={()=>attemptPair(3)} w={CW} h={CH} flash={flashCard===3}/></div>
               </div>
-              <div style={{textAlign:"center"}}><Card card={set1[4]} faceUp selected={false} matched={matchedSet1.has(4)} onClick={()=>attemptPair(4)} w={CW} h={CH} flash={flashCard===4}/><div style={{color:lightMode?"#999":"#333",fontSize:7,letterSpacing:2,marginTop:1}}>DEEP PAST</div></div>
+              <div style={{textAlign:"center"}}><Card card={set1[4]} faceUp selected={false} matched={matchedSet1.has(4)} onClick={()=>attemptPair(4)} w={CW} h={CH} flash={flashCard===4}/><div style={{color:lightMode?"#000":"#fff",fontSize:7,letterSpacing:2,marginTop:1}}>DEEP PAST</div></div>
             </div>
           </div>
 
           <div style={{height:1,background:"linear-gradient(90deg,transparent,"+accent+"25,transparent)",marginBottom:3}}/>
 
           <div>
-            <div style={{color:"#555",fontSize:8,letterSpacing:3,textAlign:"center",marginBottom:2}}>◈ SET-2 · CONCEALED ◈</div>
+            <div style={{color:lightMode?"#000":"#fff",fontSize:8,letterSpacing:3,textAlign:"center",marginBottom:2}}>◈ SET-2 · CONCEALED ◈</div>
             <div style={{display:"flex",justifyContent:"center",gap:Math.max(3, Math.min(5, Math.floor((400 - 5*CW)/6)))}}>
               {set2.map((card,i)=><Card key={card.id} card={card} faceUp={i<=revealedIndex} selected={selectedSet2===i} matched={matchedSet2.has(i)} onClick={gamePhase==="playing"&&i===revealedIndex+1&&!matchedSet2.has(i)?()=>revealNext(i):null} w={CW} h={CH}/>)}
             </div>
