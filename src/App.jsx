@@ -252,9 +252,9 @@ export default function DecadenceGame(){
   const vh = typeof window !== 'undefined' ? window.innerHeight : 700;
   const vw = typeof window !== 'undefined' ? Math.min(window.innerWidth, 400) : 400;
   const fromHeight = Math.floor((vh - 180) / 4);
-  const fromWidth = Math.floor((vw - 24) / 3.2);
-  const CH = Math.max(65, Math.min(145, fromHeight, fromWidth));
-  const CW = Math.round(CH / 1.5);
+  const fromWidth = Math.floor((vw - 30) / 5 * 1.77);
+  const CH = Math.max(65, Math.min(115, fromHeight, fromWidth));
+  const CW = Math.round(CH / 1.77);
 
   // #13: view a demon from the log
   const viewLoggedDemon=(entry)=>{
