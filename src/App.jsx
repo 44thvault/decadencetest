@@ -384,7 +384,7 @@ export default function DecadenceGame(){
 
 
         {/* ═══ GAME BOARD ═══ */}
-        {(gamePhase==="playing"||gamePhase==="pairing")&&(<>
+        {(gamePhase==="playing"||gamePhase==="pairing")&&(<div style={{transform:"scale(1.25)",transformOrigin:"top center",marginBottom:CH*0.8}}>
           <div style={{textAlign:"center",padding:"2px 8px",marginBottom:2,color:accent,fontSize:10,letterSpacing:1,minHeight:14,fontWeight:message.includes("VALID")?"bold":"normal"}}>{message}</div>
 
           <div style={{marginBottom:3}}>
@@ -420,7 +420,7 @@ export default function DecadenceGame(){
             <div style={{color:accent}}>{roundResults[roundResults.length-1].cards[0].value}{SS[roundResults[roundResults.length-1].cards[0].suit]} + {roundResults[roundResults.length-1].cards[1].value}{SS[roundResults[roundResults.length-1].cards[1].suit]} = {targetSum} +{roundResults[roundResults.length-1].score}</div>
             {roundResults.length>1&&<div style={{color:"#444",fontSize:10,marginTop:2}}>Total from pairs: +{roundResults.reduce((s,r)=>s+r.score,0)}</div>}
           </div>)}
-        </>)}
+        </div>)}
 
         {/* ═══ ROUND END ═══ */}
         {gamePhase==="roundEnd"&&(<div style={{textAlign:"center",paddingTop:36}}>
