@@ -189,7 +189,7 @@ export default function DecadenceGame(){
   const isSub=mode==="subdecadence";
   const accent=lightMode?"#000":(isSub?"#f0f":"#0f3");
   // Theme
-  const T=lightMode?{bg:"#fff",text:"#000",muted:"#333",faint:"#666",border:"#ccc",borderFaint:"#ddd",cardBg:"#f5f5f5",cardText:"#000",overlayBg:"rgba(255,255,255,0.97)",panelBg:"rgba(245,245,245,0.95)",accent:"#000",accentFaint:"#00000020",riteTC:"#000",ritePlex:"#000",riteWarp:"#000",pathText:"#000",interpText:"#000",pylonLabel:"#999",scanline:"transparent"}:{bg:"#000",text:"#ccc",muted:"#777",faint:"#444",border:"#1a1a1a",borderFaint:"#111",cardBg:"#111",cardText:"#ccc",overlayBg:"rgba(0,0,0,0.94)",panelBg:"rgba(0,0,0,0.3)",accent:accent,accentFaint:accent+"30",riteTC:"#0f0",ritePlex:"#9966ff",riteWarp:accent,pathText:"#bba",interpText:"#ccc",pylonLabel:"#333",scanline:"rgba(255,255,255,0.015)"};
+  const T=lightMode?{bg:"#fff",text:"#000",muted:"#333",faint:"#333",border:"#ccc",borderFaint:"#ddd",cardBg:"#f5f5f5",cardText:"#000",overlayBg:"rgba(255,255,255,0.97)",panelBg:"rgba(245,245,245,0.95)",accent:"#000",accentFaint:"#00000020",riteTC:"#000",ritePlex:"#000",riteWarp:"#000",pathText:"#000",interpText:"#000",pylonLabel:"#999",scanline:"transparent"}:{bg:"#000",text:"#ccc",muted:"#777",faint:"#444",border:"#1a1a1a",borderFaint:"#111",cardBg:"#111",cardText:"#ccc",overlayBg:"rgba(0,0,0,0.94)",panelBg:"rgba(0,0,0,0.3)",accent:accent,accentFaint:accent+"30",riteTC:"#0f0",ritePlex:"#9966ff",riteWarp:accent,pathText:"#bba",interpText:"#ccc",pylonLabel:"#333",scanline:"rgba(255,255,255,0.015)"};
 
   useEffect(()=>{const iv=setInterval(()=>{glitchOffset.current={x:(Math.random()*3-1.5),y:(Math.random()*2-1)};setGlitchText(true);setTimeout(()=>setGlitchText(false),100);},5000+Math.random()*8000);return()=>clearInterval(iv);},[]);
 
@@ -264,7 +264,7 @@ export default function DecadenceGame(){
   };
 
   return(
-    <div style={{minHeight:"100dvh",width:"100%",background:T.bg,color:T.text,fontFamily:"'Courier New',monospace",position:"relative",overflow:"hidden",WebkitTapHighlightColor:"transparent",transition:"background 0.3s, color 0.3s"}}>
+    <div style={{minHeight:"100dvh",width:"100%",background:T.bg,color:T.text,fontFamily:"'Courier New',monospace",fontWeight:lightMode?"bold":"normal",position:"relative",overflow:"hidden",WebkitTapHighlightColor:"transparent",transition:"background 0.3s, color 0.3s"}}>
 
       <div style={{position:"relative",zIndex:2,maxWidth:400,margin:"0 auto",padding:"6px 8px 10px",minHeight:"100dvh",overflowX:"hidden"}}>
 
