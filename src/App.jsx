@@ -384,7 +384,7 @@ export default function DecadenceGame(){
 
 
         {/* ═══ GAME BOARD ═══ */}
-        {(gamePhase==="playing"||gamePhase==="pairing")&&(<div>          <div style={{textAlign:"center",padding:"2px 8px",marginBottom:2,color:accent,fontSize:10,letterSpacing:1,minHeight:14,fontWeight:message.includes("VALID")?"bold":"normal"}}>{message}</div>
+        {(gamePhase==="playing"||gamePhase==="pairing")&&(<div style={{transform:"scale(1.12)",transformOrigin:"top center",marginBottom:CH*0.4}}>          <div style={{textAlign:"center",padding:"2px 8px",marginBottom:2,color:accent,fontSize:10,letterSpacing:1,minHeight:14,fontWeight:message.includes("VALID")?"bold":"normal"}}>{message}</div>
 
           <div style={{marginBottom:3}}>
             <div style={{color:lightMode?"#000":"#fff",fontSize:8,letterSpacing:3,textAlign:"center",marginBottom:2}}>◈ SET-1 · ATLANTEAN CROSS ◈</div>
