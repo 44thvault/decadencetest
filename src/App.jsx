@@ -96,7 +96,7 @@ const DemonOracle=({result,onClose,onShare,mode,aeonTotal,lightMode})=>{const[vi
       <div style={{color:mt,fontSize:15,marginBottom:16}}>Mesh-{d.mesh} · {d.type} · [{d.netSpan}] · <span style={{fontStyle:"italic"}}>{demonPhoneme(d.netSpan)}</span></div>
       <Sec label="PITCH">{d.pitch}</Sec>
       <Sec label={isSub?"NET-SPAN PASSAGE":"ZONE PASSAGE"}>{d.zone}</Sec>
-      {d.syzygy&&<Sec label="SYZYGY">{d.syzygy}</Sec>}
+      {d.syzygy&&<Sec label="SYZYGY (BARKER-TWIN)">{d.syzygy}</Sec>}
       <Sec label="DOMAIN">{d.domain}</Sec>
       {d.door&&<Sec label="DOOR">{d.door}{d.planet?" · "+d.planet:""}{d.spine?" · "+d.spine:""}</Sec>}
       {!d.door&&d.planet&&<Sec label="PLANETARY AFFINITY">{d.planet}{d.spine?" · "+d.spine:""}</Sec>}
@@ -365,12 +365,15 @@ export default function DecadenceGame(){
             {showAbout&&(<div style={{padding:"14px 12px",textAlign:"left",border:"1px solid "+(lightMode?"#ccc":"#1a1a1a"),borderRadius:2,background:lightMode?"rgba(0,0,0,0.03)":"rgba(0,0,0,0.3)",marginBottom:16}}>
               <div style={{color:accent,fontSize:13,letterSpacing:3,marginBottom:8}}>◈ ORIGINS ◈</div>
               <div style={{color:lightMode?"#000":"#fff",fontSize:16,lineHeight:1.9}}>
-                {isSub?"Subdecadence is the vigorously suppressed variant of the Decadence system — known amongst decadologists as 'the ultimate blasphemy.' Where Decadence operates under the Atlantean/AOE hermetic tradition (pairing to ten), Subdecadence pairs to nine, corresponding directly to the Numogram's syzygetic principle of zygonovism (nine-sum twinning). The four Queens (valued zero) correspond to the four Chaotic Xenodemons.":"Decadence is a gambling game and divination system associated with the Western tradition of Pandemonium practice, supposedly originating in Atlantis. The Adept Orders trace it to 10,000 BC. It is linked to Sumero-Babylonian geometry — the division of the circle into 360 (= 36 × 10) degrees. The western uptake of Pandemonium has its own esoteric gnosis called Decadology, assigning Amphidemons and Cyclic Chronodemons to nine cluster types."}
+                {isSub?"Subdecadence is the vigorously suppressed variant of the Decadence system — known amongst decadologists as 'the ultimate blasphemy.' Where Decadence operates under the Atlantean/AOE hermetic tradition (pairing to ten), Subdecadence pairs to nine, corresponding directly to the Numogram's syzygetic principle of zygonovism (nine-sum twinning). The four Queens (valued zero) correspond to the four Chaotic Xenodemons.":"Decadence is a gambling game and divination system associated with the Western tradition of Pandemonium practice, supposedly originating in Atlantis. The Adept Orders trace it to 10,000 BC. It is linked to Sumero-Babylonian geometry — the division of the circle into 360 (= 36 × 10) degrees. The western uptake of Pandemonium has its own esoteric gnosis called Decadology, assigning Amphidemons and Cyclic Chronodemons to nine cluster types. Materials contributing to decadological research are said to be meticulously archived in the AOE Hall of Records."}
               </div>
               <div style={{color:lightMode?"#000":"#fff",fontSize:16,lineHeight:1.9,marginTop:10}}>
-                The Pandemonium Matrix is the complete system of Lemurian demonism and time-sorcery — Numogram (time-map) and Matrix (listing the names, numbers and attributes of the 45 demons). Five syzygetic demons (Katak, Djynxx, Oddubb, Murrumur, Uttunul) carry the fundamental currents. The system is constructed according to immanent criteria latent in decimal numeracy.
+                The Pandemonium Matrix is the complete system of Lemurian demonism and time-sorcery — Numogram (time-map) and Matrix (listing the names, numbers and attributes of the 45 demons). The five syzygies (Barker-twinnings) together constitute the Pentazygon (Five-twin): Uttunul (9::0, Plex), Murrumur (8::1, Surge), Oddubb (7::2, Hold), Djynxx (6::3, Warp), and Katak (5::4, Sink). The system is constructed according to immanent criteria latent in decimal numeracy.
               </div>
-              <div style={{color:lightMode?"#666":"#666",fontSize:14,marginTop:12}}>Source: ccru.net/digithype/pandemonium.htm</div>
+              <div style={{color:lightMode?"#000":"#fff",fontSize:16,lineHeight:1.9,marginTop:10}}>
+                In the rituals of the Nma the time-circuit is concretized as a hydro-cycle: the undivided waters (Murrumur, oceanic), cloud-building (Oddubb, evaporation), and down-pour (Katak, precipitation). The cycle is closed by a return to the abysmal waters, intrinsically linking the order of time, and its recurrence, to an ultimate cataclysm.
+              </div>
+              <div style={{color:lightMode?"#666":"#666",fontSize:14,marginTop:12}}>Sources: ccru.net/digithype/pandemonium.htm · ccru.net/occultures/bookofpaths.htm · Vysparov's Concordance (Hyperstition, 2004)</div>
             </div>)}
 
             {/* CONTACT */}
